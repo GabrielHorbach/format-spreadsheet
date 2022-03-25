@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest",
+    "test:watch": "jest --watchAll"
+  },
+  "dependencies": {
+    "xlsx": "^0.18.2"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1"
+  }
+}

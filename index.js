@@ -1,4 +1,5 @@
 const XLSX = require("xlsx");
+const path = require("path");
 
 function getDataFromFile(path) {
   const wb = XLSX.readFile(path, { type: "array" });
@@ -19,14 +20,18 @@ function writeNewSpreadsheet(data) {
   const newWs = XLSX.utils.aoa_to_sheet(data);
   const newWb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(newWb, newWs, "Planilha 1");
-  XLSX.writeFile(newWb, "./data/formatado.xlsx");
+  const filePath = path.resolve(".", "data", "formatado.xlsx");
+  XLSX.writeFile(newWb, filePath);
 }
 
 function formatSpreadsheet() {
-  const data = getDataFromFile("./data/test.xlsx");
+  const filePath = path.resolve(".", "data", "dash.xlsx");
+  const data = getDataFromFile(filePath);
   const formattedData = removeNumbersFromBeginningOfLine(data);
   writeNewSpreadsheet(formattedData);
-  console.log("Done! File: /data/formatado.xlsx created.");
+  console.log(
+    "Finalizado! Novo arquivo 'formatado.xlsx' criado dentro de 'data'."
+  );
 }
 
 formatSpreadsheet();

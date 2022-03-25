@@ -3,12 +3,15 @@ const {
   getDataFromFile,
   removeNumbersFromBeginningOfLine,
 } = require(".");
+const path = require("path");
 
 describe("format spreadsheet functionality", () => {
   it("should contain the same number of rows after formatting", () => {
-    const dataBefore = getDataFromFile("./data/test.xlsx");
+    const filePathToFormat = path.resolve("data", "dash.xlsx");
+    const dataBefore = getDataFromFile(filePathToFormat);
     formatSpreadsheet();
-    const dataAfter = getDataFromFile("./data/formatado.xlsx");
+    const filePathFormatted = path.resolve("data", "formatado.xlsx");
+    const dataAfter = getDataFromFile(filePathFormatted);
     expect(dataBefore.length).toEqual(dataAfter.length);
   });
 
